@@ -1,0 +1,8 @@
+C_OBJS = load-ihex.o rawusb.o usb_linux.o
+OBJS = $(C_OBJS)
+
+load-ihex: $(OBJS)
+	gcc -o load-ihex $(OBJS)
+
+%.o: %.c
+	gcc -c -o $@ $<

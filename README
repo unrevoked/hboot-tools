@@ -1,0 +1,75 @@
+hboot-tools
+===========
+
+This repository contains the "HBOOT tools", a set of utilities developed
+as part of the unrEVOked and AlphaRev projects.  The HBOOT tools primary
+serve as a research mechanism for understanding the internals of HBOOT; as a
+proof of concept, I came up with an on-phone demo UI for reflashing the
+bootloader with one that we had patched.
+
+The basic mechanism of action is the usage of a backdoor interface to modify
+memory on a running HBOOT instance.  In our case, we either used an ENG
+HBOOT (which had the 'mw' command already), or a SHIP HBOOT that we had
+patched by hand to add the 'mw' command to the command table.  From there,
+we could load in our own chunk of code, and then add our own code to the
+command table.  For large amounts of code, we could use 'fastboot flash' to
+transmit our code into the device's fastboot download buffer, and then
+readjust the pointer to point into that region.
+
+Included in this repository are --
+
+simple-test
+-----------
+A test program that does some painting on screen, and tests a few HBOOT API
+calls (should be supported on supersonic and bravo).  I'm not sure which
+version of HBOOT those addresses correspond to.
+
+ihex-loader
+-----------
+Probably the most useful bit to others, a chunk of code that loads one DWORD
+at a time into HBOOT from an IntelHex (ihx) file.  It connects over
+fastboot, and sends one 'mw' command at a time.
+
+idbs & notes
+------------
+Various disassemblies of HBOOTs, and some notes.
+
+demo-menu
+---------
+Maybe the coolest bit, the on-screen menu that I was experimenting with. 
+Sadly, it never came into being as a product, but it was a very neat
+proof-of-concept.  If you want to see it in action --
+
+  http://www.youtube.com/watch?v=BLrkkHahwkQ
+
+
+I hope that this code is useful, or at least interesting, to someone.  Some
+credit where credit is due --
+
+Credits
+-------
+
+The HBOOT tools research was primarily carried out by:
+  Joshua Wise (@jwise0) (lead author; current non-maintainer)
+  Kenny Millington (@KennyMillington)
+  Sen Verbrugge (@ief_tm)
+
+Our research was based on previous work on HBOOT, including work done by:
+  Matt Mastracci (@mmastrac)
+  Matthew Fogle
+  Eric Smaxwill
+
+hboot-tools is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND
+PERFORMANCE OF THE PROGRAM IS WITH YOU.  When using hboot-tools, there is a
+very real risk of permanent damage to your phone; IN NO EVENT UNLESS
+REQUIRED BY APPLICABLE LAW WILL ANY CONTRIBUTOR BY LIABLE TO YOU FOR
+DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES
+ARISING OUT OF THE USE OR INABILITY TO INABILITY TO USE THE PROGRAM.
+
+I hope that someone out there will find hboot-tools either useful or
+interesting; if you do, please feel free to send me mail!  You can find my
+contact information at:
+
+  http://www.joshuawise.com/contact

@@ -1,0 +1,14 @@
+8E08D408 becomes 8E07A784 (set up secondary table)
+
+8E07A7C8 becomes whatever you want to jump to (jump to 0x0)
+
+8e00948c becomes e3a00001 (is_unlocked)
+8e009490 becomes e1a0f00e
+
+For supercid:
+joshua@escape:~/android/supersonic/hboot$ fastboot oem mw 8E007648 1 e3a00001
+joshua@escape:~/android/supersonic/hboot$ fastboot oem mw 8E00764c 1 e1a0f00e
+
+To set backup cid:
+fastboot oem mw a0311874 1 34333231
+fastboot oem mw a0311878 1 38373635

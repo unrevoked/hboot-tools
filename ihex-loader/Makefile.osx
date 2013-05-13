@@ -1,0 +1,8 @@
+C_OBJS = load-ihex.o rawusb.o usb_osx.o
+OBJS = $(C_OBJS)
+
+load-ihex: $(OBJS)
+	gcc -arch i386 -o load-ihex $(OBJS) -framework IOKit -framework Carbon
+
+%.o: %.c
+	gcc -arch i386 -c -o $@ $<

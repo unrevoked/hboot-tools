@@ -1,0 +1,7 @@
+7454 becomes 00 00 A0 E3 0E F0 A0 E1 -- for S-OFF
+736F1 became UNREVOKED\0\0
+7AA6C becomes 54 FC 06 8E -- for aMw
+7AA70 becomes 2C 9A 01 8E -- for cmd_mw
+7A794 becomes 78 00 07 8E -- for aKeytest
+
+7A798 becomes 08 81 01 8E -- for cmd_keytest
